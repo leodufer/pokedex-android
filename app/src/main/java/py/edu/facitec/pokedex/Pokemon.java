@@ -10,12 +10,21 @@ public class Pokemon {
 
     private int id;
     private String name;
+    private String species;
     private List<String> type;
     private List<String>abilities;
     private String height;
     private String weight;
     private List<String> evolution;
     private Stat stats;
+
+    public String getSpecies() {
+        return species;
+    }
+
+    public void setSpecies(String species) {
+        this.species = species;
+    }
 
     public int getId() {
         return id;
