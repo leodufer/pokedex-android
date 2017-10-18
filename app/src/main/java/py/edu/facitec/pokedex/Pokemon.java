@@ -1,12 +1,16 @@
 package py.edu.facitec.pokedex;
 
+
+
+
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by virux on 27/09/17.
  */
 
-public class Pokemon {
+public class Pokemon implements Serializable {
 
     private int id;
     private String name;

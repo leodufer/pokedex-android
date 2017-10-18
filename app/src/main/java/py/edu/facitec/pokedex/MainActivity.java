@@ -1,11 +1,14 @@
 package py.edu.facitec.pokedex;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -23,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements Callback<List<Pok
         setContentView(R.layout.activity_main);
         progressBar =(ProgressBar)findViewById(R.id.progressBar);
         pokemonsListView = (ListView)findViewById(R.id.pokemonListView);
+
         recuperarDatos();
     }
     private void recuperarDatos() {
@@ -36,11 +40,25 @@ public class MainActivity extends AppCompatActivity implements Callback<List<Pok
     }
 
     @Override
-    public void success(List<Pokemon> pokemons, Response response) {
+    public void success(final List<Pokemon> pokemons, Response response) {
         progressBar.setVisibility(View.GONE);
         PokemonAdapter adapter = new PokemonAdapter(pokemons,MainActivity.this);
         pokemonsListView.setAdapter(adapter);
         pokemonsListView.setVisibility(View.VISIBLE);
+
+        pokemonsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+               /* Toast
+                        .makeText(MainActivity.this,
+                                pokemons.get(position).getName(),
+                                Toast.LENGTH_LONG)
+                        .show();*/
+                Intent i = new Intent(MainActivity.this, DetalleActivity.class);
+                i.putExtra("pokemon",pokemons.get(position));
+                startActivity(i);
+            }
+        });
     }
 
     @Override

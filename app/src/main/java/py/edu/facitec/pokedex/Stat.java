@@ -2,11 +2,13 @@ package py.edu.facitec.pokedex;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 /**
  * Created by virux on 27/09/17.
  */
 
-public class Stat {
+public class Stat implements Serializable {
     private int hp;
     private int attack;
     private int defense;
